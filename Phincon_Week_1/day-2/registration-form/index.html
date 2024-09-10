@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Registration Form</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="flex justify-center items-center min-h-screen">
+      <div class="bg-white p-8 rounded-lg shadow-md w-full max-w-xl">
+        <div class="flex items-center justify-between mb-6">
+          <img src="logo-phincon-academy.png" alt="Logo" class="h-12" />
+          <h2 class="text-2xl font-semibold text-blue-700">
+            Registration Form
+          </h2>
+        </div>
+
+        <!-- Form -->
+        <form action="#" method="POST">
+          <!-- Nama Siswa -->
+          <div class="mb-4">
+            <label for="nama" class="block text-sm font-medium text-gray-700"
+              >Nama Siswa</label
+            >
+            <input
+              type="text"
+              id="nama"
+              name="nama"
+              class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+            />
+          </div>
+
+          <!-- Kelas -->
+          <div class="mb-4">
+            <label for="kelas" class="block text-sm font-medium text-gray-700"
+              >Kelas</label
+            >
+            <input
+              type="text"
+              id="kelas"
+              name="kelas"
+              class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+            />
+          </div>
+
+          <!-- Jenis Kelamin -->
+          <div class="mb-4">
+            <label class="block text-sm font-medium text-gray-700" id="jen_kel"
+              >Jenis Kelamin</label
+            >
+            <div class="mt-2">
+              <label class="inline-flex items-center">
+                <input
+                  type="radio"
+                  name="jenis_kelamin"
+                  value="laki-laki"
+                  class="form-radio text-blue-600"
+                />
+                <span class="ml-2">Laki-laki</span>
+              </label>
+              <label class="inline-flex items-center ml-6">
+                <input
+                  type="radio"
+                  name="jenis_kelamin"
+                  value="perempuan"
+                  class="form-radio text-blue-600"
+                />
+                <span class="ml-2">Perempuan</span>
+              </label>
+            </div>
+          </div>
+
+          <!-- Tanggal Lahir -->
+          <div class="mb-4">
+            <label
+              for="tanggal_lahir"
+              class="block text-sm font-medium text-gray-700"
+              >Tanggal Lahir</label
+            >
+            <input
+              type="date"
+              id="tanggal_lahir"
+              name="tanggal_lahir"
+              class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+            />
+          </div>
+
+          <!-- Pendidikan Terakhir -->
+          <div class="mb-4">
+            <label
+              for="pendidikan_terakhir"
+              class="block text-sm font-medium text-gray-700"
+              >Pendidikan Terakhir</label
+            >
+            <select
+              id="pendidikan_terakhir"
+              name="pendidikan_terakhir"
+              class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+            >
+              <option id="strip">-</option>
+              <option value="sd">SD</option>
+              <option value="smp">SMP</option>
+              <option value="sma">SMA</option>
+              <option value="d3">D3</option>
+              <option value="s1">S1</option>
+            </select>
+          </div>
+
+          <div class="mb-4">
+            <label for="jurusan" class="block text-sm font-medium text-gray-700"
+              >Jurusan</label
+            >
+            <input
+              type="text"
+              id="jurusan"
+              name="jurusan"
+              class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+            />
+          </div>
+
+          <div class="mt-6">
+            <button
+              type="submit"
+              class="w-full bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+            >
+              Submit
+            </button>
+          </div>
+        </form>
+
+        <hr class="my-4" />
+
+        <div class="mt-8">
+          <h3 class="text-xl font-bold text-gray-700">Daftar Siswa</h3>
+          <table>
+            <thead>
+              <tr>
+                <th class="py-2 px-4 border-b">Nama</th>
+                <th class="py-2 px-4 border-b">Kelas</th>
+                <th class="py-2 px-4 border-b">Jenis Kelamin</th>
+                <th class="py-2 px-4 border-b">Tanggal Lahir</th>
+                <th class="py-2 px-4 border-b">Pendidikan Terakhir</th>
+                <th class="py-2 px-4 border-b">Jurusan</th>
+              </tr>
+            </thead>
+            <tbody class="text-center">
+              <tr>
+                <td>
+                  <span class="text-gray-700">Udin</span>
+                </td>
+                <td>
+                  <span class="text-gray-700">Fullstack js</span>
+                </td>
+                <td>
+                  <span class="text-gray-700">Laki-laki</span>
+                </td>
+                <td>
+                  <span class="text-gray-700">2020-10-10</span>
+                </td>
+                <td>
+                  <span class="text-gray-700">Strata 1</span>
+                </td>
+                <td>
+                  <span class="text-gray-700">Teknik Informatika</span>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>
