@@ -4,10 +4,10 @@ function toggleTheme() {
   let themeIcon = document.getElementById("theme");
 
   if (themeIcon.src.includes("dark-mode.svg")) {
-    themeIcon.src = "/assets/light-mode.svg";
-    styleCss.href = "style2.css";
+    themeIcon.src = "/Phincon_Week_1/day-4/calculator/assets/light-mode.svg";
+    styleCss.href = "/Phincon_Week_1/day-4/calculator/style2.css";
   } else {
-    themeIcon.src = "/assets/dark-mode.svg";
-    styleCss.href = "style.css";
+    themeIcon.src = "/Phincon_Week_1/day-4/calculator/assets/dark-mode.svg";
+    styleCss.href = "/Phincon_Week_1/day-4/calculator/style.css";
   }
 }
