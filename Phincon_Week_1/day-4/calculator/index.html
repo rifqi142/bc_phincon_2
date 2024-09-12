@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="style.css" id="style" />
+    <title>Calculator</title>
+  </head>
+  <body class="theme">
+    <div class="flex justify-center min-h-screen py-10">
+      <div class="p-8 rounded-lg shadow-md w-full max-w-sm main-bg">
+        <div class="flex flex-row justify-between">
+          <h3 class="font-bold">Calc</h3>
+          <div class="flex flex-row gap-5 items-center">
+            <p class="font-bold text-xs">THEME</p>
+            <img
+              src="./assets/dark-mode.svg"
+              width="30"
+              height="30"
+              alt="section-mode"
+              class="cursor-pointer"
+              id="theme"
+              onclick="toggleTheme()"
+            />
+          </div>
+        </div>
+        <div class="p-7 display display-bg rounded-lg mt-5">
+          <p class="text-3xl text-end">0</p>
+        </div>
+
+        <!-- key -->
+        <div class="p-5 key-bg-container mt-5 rounded-lg">
+          <h2 class="text-2xl">R Calculator</h2>
+          <!-- 789 -->
+          <div class="rounded-lg flex flex-row gap-3 mt-5">
+            <button
+              class="key-num key-container text-xl w-full rounded-lg font-bold px-3 py-2 cursor-pointer"
+              type="button"
+              value="7"
+            >
+              7
+            </button>
+            <button
+              class="key-num key-container text-xl w-full rounded-lg font-bold px-3 py-2 cursor-pointer"
+              type="button"
+              value="8"
+            >
+              8
+            </button>
+            <button
+              class="key-num key-container text-xl w-full rounded-lg font-bold px-3 py-2 cursor-pointer"
+              type="button"
+              value="9"
+            >
+              9
+            </button>
+            <button
+              class="del-btn del-content text-xl w-full rounded-lg font-bold px-3 py-2 cursor-pointer"
+              type="button"
+              value="DEL"
+            >
+              DEL
+            </button>
+          </div>
+          <!-- 456 -->
+          <div class="rounded-lg flex flex-row gap-3 mt-5">
+            <button
+              class="key-num key-container text-xl w-full rounded-lg font-bold px-3 py-2 cursor-pointer"
+              type="button"
+              value="4"
+            >
+              4
+            </button>
+            <button
+              class="key-num key-container text-xl w-full rounded-lg font-bold px-3 py-2 cursor-pointer"
+              type="button"
+              value="5"
+            >
+              5
+            </button>
+            <button
+              class="key-num key-container text-xl w-full rounded-lg font-bold px-3 py-2 cursor-pointer"
+              type="button"
+              value="6"
+            >
+              6
+            </button>
+            <button
+              class="key-num key-container text-xl w-full rounded-lg font-bold px-3 py-2 cursor-pointer"
+              type="button"
+              value="+"
+            >
+              +
+            </button>
+          </div>
+          <!-- 123 -->
+          <div class="rounded-lg flex flex-row gap-3 mt-5">
+            <button
+              class="key-num key-container text-xl w-full rounded-lg font-bold px-3 py-2 cursor-pointer"
+              type="button"
+              value="1"
+            >
+              1
+            </button>
+            <button
+              class="key-num key-container text-xl w-full rounded-lg font-bold px-3 py-2 cursor-pointer"
+              type="button"
+              value="2"
+            >
+              2
+            </button>
+            <button
+              class="key-num key-container text-xl w-full rounded-lg font-bold px-3 py-2 cursor-pointer"
+              type="button"
+              value="3"
+            >
+              3
+            </button>
+            <button
+              class="key-num key-container text-xl w-full rounded-lg font-bold px-3 py-2 cursor-pointer"
+              type="button"
+              value="-"
+            >
+              -
+            </button>
+          </div>
+          <!-- .0/ -->
+          <div class="rounded-lg flex flex-row gap-3 mt-5">
+            <button
+              class="key-num key-container text-xl w-full rounded-lg font-bold px-3 py-2 cursor-pointer"
+              type="button"
+              value="."
+            >
+              .
+            </button>
+            <button
+              class="key-num key-container text-xl w-full rounded-lg font-bold px-3 py-2 cursor-pointer"
+              type="button"
+              value="0"
+            >
+              0
+            </button>
+            <button
+              class="key-num key-container text-xl w-full rounded-lg font-bold px-3 py-2 cursor-pointer"
+              type="button"
+              value="/"
+            >
+              /
+            </button>
+            <button
+              class="key-num key-container text-xl w-full rounded-lg font-bold px-3 py-2 cursor-pointer"
+              type="button"
+              value="*"
+            >
+              *
+            </button>
+          </div>
+
+          <!-- = -->
+          <div class="rounded-lg flex flex-row gap-3 mt-5">
+            <button
+              class="res-btn res-content text-xl w-full rounded-lg font-bold px-3 py-2 cursor-pointer"
+              type="button"
+              value="RESET"
+            >
+              RESET
+            </button>
+            <button
+              class="sum-num summary-content text-xl w-full rounded-lg font-bold px-3 py-2 cursor-pointer text-white"
+              type="button"
+              value="="
+            >
+              =
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script>
+      const display = document.querySelector(".display p");
+      const keys = document.querySelectorAll(".key-num");
+      const del = document.querySelector(".del-btn");
+      const res = document.querySelector(".res-btn");
+      const summary = document.querySelector(".sum-num");
+
+      let defaultValue = "0";
+      display.textContent = defaultValue;
+
+      let displayValue = defaultValue;
+
+      keys.forEach((key) => {
+        key.addEventListener("click", () => {
+          if (displayValue === defaultValue) {
+            displayValue = key.value;
+          } else {
+            displayValue += key.value;
+          }
+          display.textContent = displayValue;
+        });
+      });
+
+      del.addEventListener("click", () => {
+        displayValue = displayValue.slice(0, -1);
+        if (displayValue === "") {
+          displayValue = defaultValue;
+        }
+        display.textContent = displayValue;
+      });
+
+      res.addEventListener("click", () => {
+        displayValue = defaultValue;
+        display.textContent = displayValue;
+      });
+
+      summary.addEventListener("click", () => {
+        try {
+          const result = eval(displayValue);
+          display.textContent = result.toString();
+          displayValue = result.toString();
+        } catch (e) {
+          display.textContent = "Error";
+          displayValue = "";
+        }
+      });
+    </script>
+    <script src="index.js"></script>
+  </body>
+</html>
