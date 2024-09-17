@@ -24,6 +24,15 @@ function cekAnagram(kata1, kata2) {
   } else {
     return false;
   }
+
+  // cara 2
+  // kata1 = kata1.replace(/\s/g, "").toLowerCase();
+  // kata2 = kata2.replace(/\s/g, "").toLowerCase();
+
+  // let sort1 = kata1.split("").sort().join("");
+  // let sort2 = kata2.split("").sort().join("");
+
+  // return sort1 === sort2;
 }
 
 // Ekspektasi hasil:

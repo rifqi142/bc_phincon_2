@@ -12,7 +12,9 @@ function hitungJumlahDigit(angka) {
   //   membuat perulangan untuk menjumlahkan setiap karakter
   for (let i = 0; i < numString.length; i++) {
     // menambahkan setiap karakter yang sudah diubah menjadi number
+    
     result += Number(numString[i]);
+    console.log("ini result", result);
   }
 
   return result;

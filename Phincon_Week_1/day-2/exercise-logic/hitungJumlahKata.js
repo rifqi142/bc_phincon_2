@@ -1,6 +1,7 @@
 function hitungJumlahKata(kalimat) {
   // Tulis kode di sini
 
+  // return kalimat.split(" ").length;
   //   jika kalimat kosong, maka return 0
   if (kalimat.length === 0) {
     return 0;

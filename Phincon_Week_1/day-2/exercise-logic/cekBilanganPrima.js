@@ -1,4 +1,12 @@
 function cariBilanganPrima(n) {
+  if (typeof n !== "number") {
+    return "Input harus berupa angka";
+  }
+
+  if (n < 2) {
+    return "Input harus lebih dari 1";
+  }
+
   // Tulis kode di sini
   let bilanganPrima = [];
 

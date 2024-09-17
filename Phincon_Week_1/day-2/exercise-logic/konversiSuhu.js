@@ -3,11 +3,11 @@ function konversiSuhu(suhu, jenis) {
   let result = 0;
 
   //   jika jenis suhu adalah Celcius, maka rumusnya adalah (suhu * 9) / 5 + 32
-  if (jenis === "C") {
-    result = (suhu * 9) / 5 + 32;
+  if (jenis === "F") {
+    result = (suhu * 9) / 5 + 32 + " F";
     //  jika jenis suhu adalah Fahrenheit, maka rumusnya adalah ((suhu - 32) * 5) / 9
-  } else if (jenis === "F") {
-    result = ((suhu - 32) * 5) / 9;
+  } else if (jenis === "C") {
+    result = ((suhu - 32) * 5) / 9 + " C";
   } else {
     return "Masukkan jenis suhu yang benar";
   }

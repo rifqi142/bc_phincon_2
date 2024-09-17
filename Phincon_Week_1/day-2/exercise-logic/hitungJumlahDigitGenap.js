@@ -7,7 +7,7 @@ function hitungJumlahDigitGenap(angka) {
   let result = 0;
 
   for (let i = 0; i < arr.length; i++) {
-    console.log(arr);
+    // console.log(arr);
     if (arr[i] % 2 === 0) {
       result++;
     }

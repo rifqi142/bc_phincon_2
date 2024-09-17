@@ -43,25 +43,33 @@
 }
 
 .key-container:hover {
+  background-color: #f0f7fc;
 }
 
 .key-container:active {
+  background-color: #f86c5d;
 }
 
 .summary-content:hover {
+  background-color: rgb(224, 108, 95);
 }
 
 .summary-content:active {
+  background-color: rgb(168, 69, 58);
 }
 
 .del-content:hover {
+  background-color: rgb(184, 196, 227);
 }
 
 .del-content:active {
+  background-color: rgb(122, 133, 159);
 }
 
 .res-content:hover {
+  background-color: rgb(184, 196, 227);
 }
 
 .res-content:active {
+  background-color: rgb(122, 133, 159);
 }

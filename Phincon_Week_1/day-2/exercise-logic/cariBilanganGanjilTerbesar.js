@@ -11,6 +11,9 @@ function cariBilanganGanjilTerbesar(arr) {
   }
 
   return result;
+
+  // cara 2
+  // return Math.max(...arr.filter((el) => el % 2 !== 0));
 }
 
 // Ekspektasi hasil:

@@ -2,6 +2,10 @@ function deretFibonacci(n) {
   // Tulis kode di sini
   let result = [];
 
+  // for (let i = 0; i < n; i++) {
+  //   result.push(i === 0 ? 0 : i === 1 ? 1 : result[i - 1] + result[i - 2]);
+  // }
+
   for (let i = 0; i < n; i++) {
     // jika i sama dengan 0, maka push 0 ke dalam array result
     if (i === 0) {
@@ -10,12 +14,12 @@ function deretFibonacci(n) {
     } else if (i === 1) {
       result.push(1);
     } else {
+      result.push(result[i - 1] + result[i - 2]);
       // rumus deret fibonacci
       //   console.log("result", result);
       //   console.log("i", i);
       //   console.log("result[i - 1]", result[i - 1]);
       //   console.log("result[i - 2]", result[i - 2]);
-      result.push(result[i - 1] + result[i - 2]);
     }
   }
   return result;

@@ -14,6 +14,9 @@ function hitungKemunculanKata(kalimat, kata) {
     }
   }
 
+  // cara 2
+  // return kalimat.split(kata).length - 1;
+
   return result;
 }
 
