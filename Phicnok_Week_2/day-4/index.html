@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="jquery/jquery.3.7.1.js"></script>
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="container">Halo Phincon</div>
+    <button name="btn">Click me</button>
+    <button name="btn">Click me</button>
+    <button name="btn">Click me</button>
+    <button name="btn">Click me</button>
+    <input id="inputData" type="text" />
+
+    <select name="select" id="select">
+      <option value="1">1</option>
+      <option value="2">2</option>
+      <option value="3">3</option>
+      <option value="4">4</option>
+      <option value="5">5</option>
+    </select>
+
+    <div id="container-gender">
+      <label for="lk">Laki-Laki</label>
+      <input type="radio" name="gender" id="lk" value="laki" />
+      <label for="pr">perempuan</label>
+      <input type="radio" name="gender" id="pr" value="perempuan" />
+    </div>
+
+    <script>
+      console.log(
+        "dari vanila js >>>>",
+        document.getElementById("container").innerHTML
+      );
+      console.log(
+        "Dari jquery >>>>",
+        $("#container").text("Halo phincon academy")
+      );
+
+      document.getElementById("container").style.color = "red";
+      $("#container").css("color", "red");
+
+      $("button[name='btn']").click(function () {
+        alert("Halo phincon");
+      });
+
+      $("#inputData").on("input", function () {
+        console.log($(this).val());
+      });
+
+      $("#select").on("change", () => {
+        console.log($("#select").val());
+      });
+
+      $("[name='gender']").on("change", function () {
+        //console.log($(this).attr("value"));
+        console.log($("input[name='gender']:checked").val());
+      });
+
+      $("[name='gender']")
+        .attr("class", "radio")
+        .attr("data", "ok")
+        .css("cursor", "pointer");
+
+      class Fullstack {
+        constructor() {
+          this.data = {
+            trainer: "Sigit",
+            students: ["A", "B", "C"],
+          };
+        }
+        getTrainer() {
+          return this.data.trainer;
+        }
+        getStudents() {
+          return this.data.students;
+        }
+        setAlert() {
+          alert("Halo phincon");
+          return this;
+        }
+        setDom(dom) {
+          dom.color = "red";
+          return this;
+        }
+      }
+
+      let fullstack = new Fullstack();
+      console.log(fullstack.getTrainer());
+
+      console.log(fullstack.getTrainer());
+      getTrainer();
+    </script>
+  </body>
+</html>
