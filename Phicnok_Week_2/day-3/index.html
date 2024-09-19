@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Pokémon Cards</title>
+    <title>Pokedex Pokémon</title>
     <style>
       body {
         font-family: Arial, sans-serif;
@@ -40,11 +40,41 @@
         margin: 5px 0;
         font-size: 0.9em;
       }
+      .btn-pagination {
+        margin-top: 50px;
+        margin-bottom: 50px;
+        display: flex;
+        align-items: center;
+      }
+      button {
+        background-color: #007bff;
+        border: none;
+        border-radius: 5px;
+        color: #fff;
+        cursor: pointer;
+        font-size: 1em;
+        margin: 0 5px;
+        padding: 10px 20px;
+      }
+      button.active {
+        background-color: #0056b3;
+      }
+      .btn-disabled {
+        background-color: #ccc;
+        cursor: not-allowed;
+      }
     </style>
   </head>
   <body>
     <h1>Pokémon Cards</h1>
     <div id="container"></div>
+    <div class="btn-pagination">
+      <button id="first">First Page</button>
+      <button id="prev">Previous</button>
+      <div id="page"></div>
+      <button id="next">Next</button>
+      <button id="last">Last Page</button>
+    </div>
     <script src="index.js"></script>
   </body>
 </html>
