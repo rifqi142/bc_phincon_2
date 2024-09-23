@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script
+      src="https://unpkg.com/react@18/umd/react.development.js"
+      crossorigin
+    ></script>
+    <script
+      src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"
+      crossorigin
+    ></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <link rel="stylesheet" href="style.css" id="style" />
+    <title>Calculator</title>
+  </head>
+  <body class="theme dark-theme">
+    <div id="container"></div>
+
+    <script type="text/babel">
+      const { useState } = React;
+
+      const NumKeys = ({ value, label, onClick }) => {
+        return (
+          <button
+            className="key-num key-container text-xl w-full rounded-lg font-bold px-3 py-2 cursor-pointer text-black"
+            type="button"
+            value={value}
+            onClick={() => onClick(value)}
+          >
+            {label}
+          </button>
+        );
+      };
+
+      const ContainerContent = () => {
+        const [displayValue, setDisplayValue] = useState("0");
+        const [operatorClicked, setOperatorClicked] = useState(false);
+
+        const handleClick = (value) => {
+          if (["+", "-", "*", "/"].includes(value)) {
+            // fix double operator
+            if (operatorClicked) return;
+
+            setOperatorClicked(true);
+            setDisplayValue((prev) => prev + value);
+          } else if (value === "√") {
+            // Square root logic
+            setDisplayValue((prev) => {
+              const number = parseFloat(prev);
+              return isNaN(number) ? "Error" : Math.sqrt(number).toString();
+            });
+            setOperatorClicked(false);
+          } else if (value === "DEL") {
+            // Delete the last character
+            setDisplayValue((prev) =>
+              prev.length === 1 ? "0" : prev.slice(0, -1)
+            );
+            setOperatorClicked(false);
+          } else if (value === "RESET") {
+            // Reset to default value
+            setDisplayValue("0");
+            setOperatorClicked(false);
+          } else if (value === ".") {
+            if (displayValue.includes(".")) return;
+
+            setOperatorClicked(false);
+            setDisplayValue((prev) => prev + value);
+          } else if (value === "=") {
+            // Evaluate the expression
+            try {
+              setDisplayValue((prev) => eval(prev).toString());
+            } catch {
+              setDisplayValue("Error");
+            }
+            setOperatorClicked(false);
+          } else {
+            setOperatorClicked(false);
+
+            setDisplayValue((prev) => (prev === "0" ? value : prev + value));
+          }
+        };
+
+        function toggleTheme() {
+          let themeIcon = document.getElementById("theme");
+          let body = document.body;
+
+          if (body.classList.contains("dark-theme")) {
+            body.classList.remove("dark-theme");
+            body.classList.add("light-theme");
+            themeIcon.src = "./assets/light-mode.svg";
+          } else {
+            body.classList.add("dark-theme");
+            body.classList.remove("light-theme");
+            themeIcon.src = "./assets/dark-mode.svg";
+          }
+        }
+
+        return (
+          <>
+            <div className="flex justify-center min-h-screen py-10">
+              <div className="p-8 rounded-lg shadow-md w-full max-w-sm main-bg">
+                <div className="flex flex-row justify-between">
+                  <h3 className="font-bold">Calc</h3>
+                  <div className="flex flex-row gap-5 items-center">
+                    <p className="font-bold text-xs">THEME</p>
+                    <img
+                      src="./assets/dark-mode.svg"
+                      width="30"
+                      height="30"
+                      alt="section-mode"
+                      className="cursor-pointer"
+                      id="theme"
+                      onClick={toggleTheme}
+                    />
+                  </div>
+                </div>
+                <div className="p-7 display display-bg rounded-lg mt-5">
+                  <p className="text-3xl text-end" id="display">
+                    {displayValue}
+                  </p>
+                </div>
+
+                <div className="p-5 key-bg-container mt-5 rounded-lg">
+                  <h2 className="text-2xl">R Calculator</h2>
+
+                  <div className="rounded-lg flex flex-row gap-3 mt-5">
+                    <NumKeys value="7" label="7" onClick={handleClick} />
+                    <NumKeys value="8" label="8" onClick={handleClick} />
+                    <NumKeys value="9" label="9" onClick={handleClick} />
+                    <NumKeys value="DEL" label="DEL" onClick={handleClick} />
+                  </div>
+
+                  <div className="rounded-lg flex flex-row gap-3 mt-5">
+                    <NumKeys value="4" label="4" onClick={handleClick} />
+                    <NumKeys value="5" label="5" onClick={handleClick} />
+                    <NumKeys value="6" label="6" onClick={handleClick} />
+                    <NumKeys value="+" label="+" onClick={handleClick} />
+                  </div>
+
+                  <div className="rounded-lg flex flex-row gap-3 mt-5">
+                    <NumKeys value="1" label="1" onClick={handleClick} />
+                    <NumKeys value="2" label="2" onClick={handleClick} />
+                    <NumKeys value="3" label="3" onClick={handleClick} />
+                    <NumKeys value="-" label="-" onClick={handleClick} />
+                  </div>
+
+                  <div className="rounded-lg flex flex-row gap-3 mt-5">
+                    <NumKeys value="." label="." onClick={handleClick} />
+                    <NumKeys value="0" label="0" onClick={handleClick} />
+                    <NumKeys value="/" label="/" onClick={handleClick} />
+                    <NumKeys value="*" label="*" onClick={handleClick} />
+                  </div>
+
+                  <div className="rounded-lg flex flex-row gap-3 mt-5">
+                    <NumKeys value="√" label="√" onClick={handleClick} />
+                  </div>
+
+                  <div className="rounded-lg flex flex-row gap-3 mt-5">
+                    <NumKeys
+                      value="RESET"
+                      label="RESET"
+                      onClick={handleClick}
+                    />
+                    <NumKeys value="=" label="=" onClick={handleClick} />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </>
+        );
+      };
+
+      ReactDOM.createRoot(document.getElementById("container")).render(
+        <ContainerContent />
+      );
+    </script>
+  </body>
+</html>
