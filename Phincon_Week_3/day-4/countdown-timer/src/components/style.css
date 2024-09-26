@@ -1,0 +1,30 @@
+/* Primary */
+.grayish-blue {
+  color: hsl(237, 18%, 59%);
+}
+
+.soft-red {
+  color: hsl(345, 95%, 68%);
+}
+
+/* Neutral Color */
+.dark-blue {
+  background-color: hsl(236, 10%, 26%);
+}
+
+.very-dark-blue {
+  color: hsl(235, 16%, 14%);
+}
+
+.very-dark {
+  color: hsl(234, 17%, 12%);
+}
+
+.dark-bg {
+  background-color: #211d2b;
+  /* background-image: url("/public/pattern-hills.svg"); */
+}
+
+.hill-bg {
+  background-color: "/pattern-hills.svg";
+}
