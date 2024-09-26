@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hasil Pertandingan</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body class="bg-gray-100 flex items-center justify-center h-screen">
+    <div class="text-center">
+      <h1 class="text-4xl font-bold mb-8">Hasil Pertandingan</h1>
+
+      <div id="result" class="text-2xl font-semibold text-gray-800 mb-8"></div>
+
+      <button
+        onclick="restartGame()"
+        class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
+      >
+        Main Lagi
+      </button>
+    </div>
+
+    <script>
+      // mendapatkan hasil pertandingan dari URL parameter
+      const urlParams = new URLSearchParams(window.location.search);
+      const player1Wins = parseInt(urlParams.get("player1Wins")) || 0;
+      const player2Wins = parseInt(urlParams.get("player2Wins")) || 0;
+
+      const resultText = document.getElementById("result");
+
+      // menampilkan hasil pertandingan
+      if (player1Wins > player2Wins) {
+        resultText.textContent = `Pemenang: Player 1 (${player1Wins} - ${player2Wins})`;
+      } else if (player2Wins > player1Wins) {
+        resultText.textContent = `Pemenang: Player 2 (${player2Wins} - ${player1Wins})`;
+      } else {
+        resultText.textContent = `Permainan Seri (${player1Wins} - ${player2Wins})`;
+      }
+
+      // kembali ke halaman index.html untuk memulai permainan baru
+      function restartGame() {
+        window.location.href = "index.html";
+      }
+    </script>
+  </body>
+</html>

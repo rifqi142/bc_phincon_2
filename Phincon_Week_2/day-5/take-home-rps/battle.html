@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Battle</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body class="bg-gray-100 flex items-center justify-center h-screen">
+    <div class="text-center">
+      <h1 id="match-info" class="text-3xl font-bold mb-8">Match 1 dari 5</h1>
+      <div class="grid grid-cols-2 gap-10">
+        <!-- Player 1 Options -->
+        <div>
+          <h2 class="text-xl font-semibold mb-4">Player 1</h2>
+          <div id="player1-options">
+            <button
+              class="bg-red-500 text-white px-4 py-2 rounded m-2"
+              onclick="makeChoice('player1', 'Gunting')"
+            >
+              Gunting
+            </button>
+            <button
+              class="bg-gray-500 text-white px-4 py-2 rounded m-2"
+              onclick="makeChoice('player1', 'Batu')"
+            >
+              Batu
+            </button>
+            <button
+              class="bg-yellow-500 text-white px-4 py-2 rounded m-2"
+              onclick="makeChoice('player1', 'Kertas')"
+            >
+              Kertas
+            </button>
+          </div>
+          <div class="mt-4">
+            <img id="player1-image" src="" alt="" class="h-32 mx-auto hidden" />
+          </div>
+        </div>
+
+        <!-- Player 2 Options -->
+        <div>
+          <h2 class="text-xl font-semibold mb-4">Player 2</h2>
+          <div id="player2-options">
+            <button
+              class="bg-red-500 text-white px-4 py-2 rounded m-2"
+              onclick="makeChoice('player2', 'Gunting')"
+            >
+              Gunting
+            </button>
+            <button
+              class="bg-gray-500 text-white px-4 py-2 rounded m-2"
+              onclick="makeChoice('player2', 'Batu')"
+            >
+              Batu
+            </button>
+            <button
+              class="bg-yellow-500 text-white px-4 py-2 rounded m-2"
+              onclick="makeChoice('player2', 'Kertas')"
+            >
+              Kertas
+            </button>
+          </div>
+          <div class="mt-4">
+            <img
+              id="player2-image"
+              src=""
+              alt="battle-choice"
+              class="h-32 mx-auto hidden"
+            />
+          </div>
+        </div>
+      </div>
+      <div class="text-center mt-8">
+        <h2 id="winner-message" class="text-2xl font-bold"></h2>
+      </div>
+    </div>
+
+    <script>
+      let player1Wins = 0;
+      let player2Wins = 0;
+
+      let currentMatch = 1;
+      const totalMatches =
+        new URLSearchParams(window.location.search).get("matches") || 5;
+      let player1Choice = "";
+      let player2Choice = "";
+
+      document.getElementById(
+        "match-info"
+      ).textContent = `Match ${currentMatch} dari ${totalMatches}`;
+
+      // Function to display image based on choice
+      function displayChoiceImage(player, choice) {
+        let imgElement = document.getElementById(`${player}-image`);
+        let imgSrc = "";
+
+        // kondisi untuk menentukan gambar yang akan ditampilkan
+        if (choice === "Gunting") {
+          imgSrc = "./assets/icon-scissor.png";
+        } else if (choice === "Batu") {
+          imgSrc = "./assets/icon-rock.png";
+        } else if (choice === "Kertas") {
+          imgSrc = "./assets/icon-paper.png";
+        }
+
+        // menampilkan gambar pilihan
+        imgElement.src = imgSrc;
+        imgElement.style.display = "block";
+      }
+
+      // menghilangkan gambar pilihan ketika match selesai
+      function resetImages() {
+        document.getElementById("player1-image").style.display = "none";
+        document.getElementById("player2-image").style.display = "none";
+      }
+
+      // mendapatkan pilihan player dan menampilkan gambarnya
+      function makeChoice(player, choice) {
+        if (player === "player1") {
+          player1Choice = choice;
+          displayChoiceImage("player1", choice);
+        } else if (player === "player2") {
+          player2Choice = choice;
+          displayChoiceImage("player2", choice);
+        }
+        // jika kedua player sudah memilih, panggil handleMatch untuk menentukan pemenang
+        if (player1Choice && player2Choice) {
+          handleMatch();
+        }
+      }
+
+      // logic  untuk menentukan pemenang match
+      function handleMatch() {
+        console.log(`Player 1 chose: ${player1Choice}`);
+        console.log(`Player 2 chose: ${player2Choice}`);
+
+        const winner = getWinner(player1Choice, player2Choice);
+        // menampilkan pesan pemenang
+        let winnerMessage = "";
+
+        // menambahkan skor berdasarkan pemenang
+        if (winner === "player1") {
+          player1Wins++;
+          winnerMessage = "Player 1 Wins!";
+        } else if (winner === "player2") {
+          player2Wins++;
+          winnerMessage = "Player 2 Wins!";
+        } else {
+          winnerMessage = "It's a draw!";
+        }
+
+        // menampilkan pesan pemenang
+        document.getElementById("winner-message").textContent = winnerMessage;
+
+        // menunggu 1 detik sebelum melanjutkan ke match berikutnya
+        setTimeout(function () {
+          resetImages();
+          player1Choice = "";
+          player2Choice = "";
+
+          if (currentMatch < totalMatches) {
+            currentMatch++;
+            document.getElementById(
+              "match-info"
+            ).textContent = `Match ${currentMatch} dari ${totalMatches}`;
+            document.getElementById("winner-message").textContent = "";
+          } else {
+            window.location.href = `result.html?player1Wins=${player1Wins}&player2Wins=${player2Wins}`;
+          }
+        }, 1000);
+      }
+
+      //  mendpatkan pemenang berdasarkan pilihan player
+      function getWinner(player1Choice, player2Choice) {
+        if (player1Choice === player2Choice) return "draw";
+        if (
+          (player1Choice === "Gunting" && player2Choice === "Kertas") ||
+          (player1Choice === "Batu" && player2Choice === "Gunting") ||
+          (player1Choice === "Kertas" && player2Choice === "Batu")
+        ) {
+          return "player1";
+        }
+        return "player2";
+      }
+    </script>
+  </body>
+</html>

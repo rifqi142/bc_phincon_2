@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gunting Batu Kertas</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body class="flex items-center justify-center h-screen bg-gray-100">
+    <div class="text-center">
+      <h1 class="text-4xl font-bold mb-4">Gunting Batu Kertas</h1>
+      <p class="text-gray-600 mb-4">Jumlah Match</p>
+      <input
+        type="number"
+        id="match-count"
+        class="border border-gray-300 p-2 rounded mb-4"
+        placeholder="Masukan ronde"
+        value=""
+      />
+      <br />
+      <button
+        onclick="startGame()"
+        class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
+      >
+        Mulai Permainan
+      </button>
+    </div>
+
+    <script>
+      function startGame() {
+        // mendapatkan jumlah match dari input value
+        const matchCount = document.getElementById("match-count").value;
+
+        // jika matchCount kosong, tampilkan alert
+        if (!matchCount) {
+          alert("Jumlah match harus diisi");
+          return;
+        }
+        // mengarahkan ke halaman battle.html dengan parameter matchCount
+        window.location.href = `battle.html?matches=${matchCount}`;
+      }
+    </script>
+  </body>
+</html>
