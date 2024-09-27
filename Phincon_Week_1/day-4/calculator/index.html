@@ -184,18 +184,38 @@
       const res = document.querySelector(".res-btn");
       const summary = document.querySelector(".sum-num");
 
-      let defaultValue = "0";
+      const defaultValue = "0";
       display.textContent = defaultValue;
 
       let displayValue = defaultValue;
+      let operatorClicked = false;
 
       keys.forEach((key) => {
         key.addEventListener("click", () => {
+          if (["+", "-", "*", "/", "√"].includes(key.value)) {
+            if (operatorClicked) return;
+
+            if (key.value === "√") {
+              displayValue = Math.sqrt(displayValue);
+              display.textContent = displayValue;
+              return;
+            }
+
+            operatorClicked = true;
+          } else {
+            operatorClicked = false;
+          }
+
           if (displayValue === defaultValue) {
-            displayValue = key.value;
+            if (key.value === ".") {
+              displayValue += ".";
+            } else {
+              displayValue = key.value;
+            }
           } else {
             displayValue += key.value;
           }
+
           display.textContent = displayValue;
         });
       });
@@ -205,11 +225,14 @@
         if (displayValue === "") {
           displayValue = defaultValue;
         }
+
+        operatorClicked = false;
         display.textContent = displayValue;
       });
 
       res.addEventListener("click", () => {
         displayValue = defaultValue;
+        operatorClicked = false;
         display.textContent = displayValue;
       });
 
@@ -218,12 +241,14 @@
           const result = eval(displayValue);
           display.textContent = result.toString();
           displayValue = result.toString();
+          operatorClicked = false;
         } catch (e) {
           display.textContent = "Error";
           displayValue = "";
+          operatorClicked = false;
         }
       });
     </script>
-    <script src="index.js"></script>
+    <script src="script.js"></script>
   </body>
 </html>
