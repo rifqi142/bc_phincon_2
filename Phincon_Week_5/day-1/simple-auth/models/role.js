@@ -1,80 +1,57 @@
-"use strict";
 const { Model, Sequelize } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
-  class users extends Model {
+  class Role extends Model {
     /**
      * Helper method for defining associations.
      * This method is not a part of Sequelize lifecycle.
      * The `models/index` file will call this method automatically.
      */
-    static associate(models) {
-      // define association here
-      // belongtomany = many to many
-      models.users.belongsToMany(models.UserRole, {
-        through: "users_roles",
-        foreignKey: "ur_us_id",
-      });
-    }
   }
-  users.init(
+  Role.init(
     {
-      us_id: {
+      rl_id: {
         type: DataTypes.INTEGER,
-        defaultValue: false,
         autoIncrement: true,
         primaryKey: true,
       },
-      us_fullname: {
-        type: DataTypes.STRING,
-        allowNull: false,
-      },
-      us_password: {
-        type: DataTypes.STRING,
-        allowNull: false,
-      },
-      us_username: {
+      rl_code: {
         type: DataTypes.STRING,
         allowNull: false,
         unique: true,
       },
-      us_email: {
+      rl_name: {
         type: DataTypes.STRING,
         allowNull: false,
-        unique: true,
       },
-      us_phone_number: {
-        type: DataTypes.STRING,
-        allowNull: false,
-        unique: true,
-      },
-      us_active: {
+      rl_active: {
         type: DataTypes.BOOLEAN,
         allowNull: false,
       },
-      us_created_on: {
-        type: DataTypes.DATE,
+      rl_created_on: {
         allowNull: true,
+        type: DataTypes.DATE,
         defaultValue: Sequelize.literal("CURRENT_TIMESTAMP"),
       },
-      us_created_by: {
+      rl_created_by: {
         type: DataTypes.INTEGER,
         allowNull: true,
       },
-      us_updated_on: {
-        type: DataTypes.DATE,
+      rl_updated_on: {
         allowNull: true,
+        type: DataTypes.DATE,
         defaultValue: Sequelize.literal("CURRENT_TIMESTAMP"),
       },
-      us_updated_by: {
+      rl_updated_by: {
         type: DataTypes.INTEGER,
         allowNull: true,
       },
     },
     {
       sequelize,
-      modelName: "users",
+      modelName: "Role",
+      tableName: "roles",
       timestamps: false,
     }
   );
-  return users;
+  return Role;
 };

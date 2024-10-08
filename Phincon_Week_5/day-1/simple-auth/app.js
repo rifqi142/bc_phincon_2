@@ -6,11 +6,13 @@ const app = express();
 const bodyParser = require("body-parser");
 const cors = require("cors");
 const port = process.env.PORT || 3000;
+const cookieParser = require("cookie-parser");
 
 const authRoutes = require("@/routes/auth");
 
 app.use(cors());
 app.use(bodyParser.json());
+app.use(cookieParser());
 app.use(express.static("public"));
 
 app.get("/", (req, res) => {

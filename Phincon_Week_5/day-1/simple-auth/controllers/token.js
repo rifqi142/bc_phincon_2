@@ -7,12 +7,12 @@ const columns = {
   active: "us_active",
 };
 
-const generateVerificationToken = async (id, email) => {
+const generateToken = (id, email, name, expiresIn) => {
   const token = jwt.sign(
-    { [columns.id]: id, [columns.email]: email },
+    { [columns.id]: id, [columns.email]: email, name: name },
     process.env.JWT_SECRET,
     {
-      expiresIn: process.env.JWT_EXPIRES_IN,
+      expiresIn: expiresIn,
     }
   );
   return token;
@@ -57,7 +57,6 @@ const verifyEmail = async (req, res) => {
   try {
     const { token } = req.query;
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
-    console.log("🚀 ~ verifyEmail ~ decoded:", decoded);
     const user = await users.findOne({
       where: { [columns.id]: decoded.id, [columns.email]: decoded.email },
     });
@@ -89,4 +88,4 @@ const verifyEmail = async (req, res) => {
   }
 };
 
-module.exports = { generateVerificationToken, verifyToken, verifyEmail };
+module.exports = { generateToken, verifyToken, verifyEmail };

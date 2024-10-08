@@ -1,80 +1,76 @@
-"use strict";
 const { Model, Sequelize } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
-  class users extends Model {
+  class Token extends Model {
     /**
      * Helper method for defining associations.
      * This method is not a part of Sequelize lifecycle.
      * The `models/index` file will call this method automatically.
      */
-    static associate(models) {
-      // define association here
-      // belongtomany = many to many
-      models.users.belongsToMany(models.UserRole, {
-        through: "users_roles",
-        foreignKey: "ur_us_id",
-      });
-    }
   }
-  users.init(
+  Token.init(
     {
-      us_id: {
+      tkn_id: {
         type: DataTypes.INTEGER,
-        defaultValue: false,
         autoIncrement: true,
         primaryKey: true,
       },
-      us_fullname: {
+      tkn_type: {
         type: DataTypes.STRING,
         allowNull: false,
       },
-      us_password: {
-        type: DataTypes.STRING,
+      tkn_value: {
+        type: DataTypes.TEXT,
         allowNull: false,
       },
-      us_username: {
+      tkn_description: {
         type: DataTypes.STRING,
-        allowNull: false,
-        unique: true,
+        allowNull: true,
       },
-      us_email: {
+      tkn_client_ip: {
         type: DataTypes.STRING,
-        allowNull: false,
-        unique: true,
+        allowNull: true,
       },
-      us_phone_number: {
+      tkn_client_agent: {
         type: DataTypes.STRING,
-        allowNull: false,
-        unique: true,
+        allowNull: true,
       },
-      us_active: {
+      tkn_us_id: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+      },
+      tkn_expired_on: {
+        type: DataTypes.DATE,
+        allowNull: false,
+      },
+      tkn_active: {
         type: DataTypes.BOOLEAN,
         allowNull: false,
       },
-      us_created_on: {
-        type: DataTypes.DATE,
+      tkn_created_on: {
         allowNull: true,
+        type: DataTypes.DATE,
         defaultValue: Sequelize.literal("CURRENT_TIMESTAMP"),
       },
-      us_created_by: {
+      tkn_created_by: {
         type: DataTypes.INTEGER,
         allowNull: true,
       },
-      us_updated_on: {
-        type: DataTypes.DATE,
+      tkn_updated_on: {
         allowNull: true,
+        type: DataTypes.DATE,
         defaultValue: Sequelize.literal("CURRENT_TIMESTAMP"),
       },
-      us_updated_by: {
+      tkn_updated_by: {
         type: DataTypes.INTEGER,
         allowNull: true,
       },
     },
     {
       sequelize,
-      modelName: "users",
+      modelName: "Token",
+      tableName: "tokens",
       timestamps: false,
     }
   );
-  return users;
+  return Token;
 };
