@@ -1,0 +1,303 @@
+{
+	"info": {
+		"_postman_id": "6e361bfb-f41c-4290-9a49-2618d891f511",
+		"name": "Phincon-RPS-Game",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "17647214"
+	},
+	"item": [
+		{
+			"name": "AUTH",
+			"item": [
+				{
+					"name": "[POST] Register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"us_username\": \"rizkyuki\",\r\n    \"us_fullname\": \"Rizky Uki Indri\",\r\n    \"us_email\": \"rizkyuki@gmail.com\",\r\n    \"us_phone_number\": \"08822115544\",\r\n    \"us_password\": \"rizkyuki123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/auth/register",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"auth",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "[POST] Register Copy",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"us_username\": \"muhali\",\r\n    \"us_fullname\": \"Muhammad Ali\",\r\n    \"us_email\": \"muhali@gmail.com\",\r\n    \"us_phone_number\": \"0882115445\",\r\n    \"us_password\": \"muhali123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/auth/register",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"auth",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "[POST] Logout",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c19pZCI6MywidXNfZW1haWwiOiJyaXpreXVraUBnbWFpbC5jb20iLCJuYW1lIjoiUml6a3kgVWtpIEluZHJpIiwidXNfaXNfYWN0aXZlIjp0cnVlLCJpYXQiOjE3Mjk1NzI5MTgsImV4cCI6MTcyOTU3NjUxOH0.ml0lrmv1C63zuJcoaS8FC3jFjBHS2PuyToOn3_TqAws",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/auth/logout",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"auth",
+								"logout"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "[POST] Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"input\": \"rizkyuki@gmail.com\",\r\n    \"us_password\": \"rizkyuki123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/auth/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "[POST] Login Copy",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"input\": \"muhali@gmail.com\",\r\n    \"us_password\": \"muhali123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/auth/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Match",
+			"item": [
+				{
+					"name": "[POST] Create Match",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c19pZCI6MywidXNfZW1haWwiOiJyaXpreXVraUBnbWFpbC5jb20iLCJuYW1lIjoiUml6a3kgVWtpIEluZHJpIiwidXNfaXNfYWN0aXZlIjp0cnVlLCJpYXQiOjE3Mjk1ODk3NjMsImV4cCI6MTcyOTU5MzM2M30.ocn1ZAdpyKhjtoxVHaZgCet30eZBA_icK_9qE1kerKA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"value\": \"rock\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/match/create-match",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"match",
+								"create-match"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "[GET] Get All Match",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c19pZCI6MywidXNfZW1haWwiOiJyaXpreXVraUBnbWFpbC5jb20iLCJuYW1lIjoiUml6a3kgVWtpIEluZHJpIiwidXNfaXNfYWN0aXZlIjp0cnVlLCJpYXQiOjE3Mjk1ODgxNzAsImV4cCI6MTcyOTU5MTc3MH0.-wUin4V5G-BZf3oG6-gqlwFL5wivlWi7FVYm3Ub8N7o",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/match/get-all-available-match",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"match",
+								"get-all-available-match"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "[PUT] Compete Match",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c19pZCI6NCwidXNfZW1haWwiOiJtdWhhbGlAZ21haWwuY29tIiwibmFtZSI6Ik11aGFtbWFkIEFsaSIsInVzX2lzX2FjdGl2ZSI6dHJ1ZSwiaWF0IjoxNzI5NTg5Nzk1LCJleHAiOjE3Mjk1OTMzOTV9.ZInlwg5aITsQcqal_CtSCY95OGxLaPjY4jPTcNxvEkA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"value\": \"paper\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/match/compete-match/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"match",
+								"compete-match",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "[GET] Get All Clear Match",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/match/get-all-scores",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"match",
+								"get-all-scores"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "[GET] Get All winner point",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
